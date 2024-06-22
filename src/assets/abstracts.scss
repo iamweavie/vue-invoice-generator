@@ -1,0 +1,85 @@
+// Colors
+$color-primary: #A22DF8;
+$color-secondary: #2C53DB;
+$color-dark-gray: #404040;
+
+// Gradients
+$gradient-primary: linear-gradient(180deg, #A22DF8 0%, #2C53DB 100%);
+
+// Shadows
+$shadow-default: 0px 3px 6px rgba(0, 0, 0, 0.16);
+
+// Spacing
+$spacing-sm: 15px;
+$spacing-md: 30px;
+$spacing-lg: 60px;
+$spacing-xl: 90px;
+
+// Structure
+$container: 1640px;
+$container-max: 2280px;
+$header-height: 316px;
+
+// Typography
+$font-size-base: 16px;
+$font-size-sm: .875rem;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+$breakpoints: (
+	"sm": $breakpoint-sm,
+	"md": $breakpoint-md,
+	"lg": $breakpoint-lg,
+	"xl": $breakpoint-xl,
+);
+
+$breakpoints-max: (
+	"sm": $breakpoint-sm - 1,
+	"md": $breakpoint-md - 1,
+	"lg": $breakpoint-lg - 1,
+	"xl": $breakpoint-xl - 1,
+);
+
+// Mixins
+@mixin breakpoint-min($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media (min-width: map-get($breakpoints, $breakpoint)) {
+			@content;
+		}
+	} @else {
+		@media (min-width: $breakpoint) {
+			@content;
+		}
+	}
+}
+
+@mixin breakpoint-max($breakpoint) {
+	@if map-has-key($breakpoints-max, $breakpoint) {
+		@media (max-width: map-get($breakpoints-max, $breakpoint)) {
+			@content;
+		}
+	} @else {
+		@media (max-width: $breakpoint) {
+			@content;
+		}
+	}
+}
+
+@mixin breakpoint-between($breakpoint-min, $breakpoint-max) {
+	@if map-has-key($breakpoints-max, $breakpoint-max) {
+		@if map-has-key($breakpoints, $breakpoint-min) {
+			@media (min-width: map-get($breakpoints, $breakpoint-min)) and (max-width: map-get($breakpoints-max, $breakpoint-max)) {
+				@content;
+			}
+		}
+	} @else {
+		@warn "One or more of the breakpoints provided is not valid.";
+		@media (min-width: $breakpoint-min) and (max-width: $breakpoint-max) {
+			@content;
+		}
+	}
+}
