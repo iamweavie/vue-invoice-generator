@@ -1,6 +1,6 @@
 # vue-invoice-generator
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a work in progress, it's really not ready yet, but I'll leave this public so you can watch the progress if you so choose.
 
 ## Recommended IDE Setup
 
